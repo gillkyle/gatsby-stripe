@@ -1,0 +1,27 @@
+{
+  "name": "gatsby-stripe",
+  "description": "Gatsby Stripe demo",
+  "version": "1.0.0",
+  "author": "Kyle Gill <gillrobertkyle@gmail.com>",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "gatsby": "^1.9.241",
+    "gatsby-link": "^1.6.39",
+    "gatsby-plugin-react-helmet": "^2.0.8",
+    "react-helmet": "^5.2.0"
+  },
+  "keywords": ["gatsby", "stripe"],
+  "license": "MIT",
+  "scripts": {
+    "copy": "cp lambda-dev/purchase.js lambda/purchase.js",
+    "lambda-serve": "yarn run copy && netlify-lambda serve lambda",
+    "build": "gatsby build && yarn run copy && netlify-lambda build lambda",
+    "develop": "gatsby develop",
+    "format": "prettier --write 'src/**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "netlify-lambda": "^1.0.0-babel-7-beta",
+    "prettier": "^1.11.1"
+  }
+}

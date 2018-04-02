@@ -1,0 +1,6 @@
+# netlify.toml 
+
+[build]
+  command = "gatsby build"
+  publish = "public"
+  functions = "lambda"
