@@ -1,10 +1,10 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import Card from '../components/Card'
+import Checkout from '../components/checkout.js'
 
 const IndexPage = () => (
   <div>
-    <Card />
+    <Checkout />
   </div>
 )
 

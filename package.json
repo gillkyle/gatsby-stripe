@@ -8,7 +8,9 @@
     "gatsby": "^1.9.241",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-react-helmet": "^2.0.8",
-    "react-helmet": "^5.2.0"
+    "gatsby-plugin-stripe-checkout": "^1.0.3",
+    "react-helmet": "^5.2.0",
+    "uuid": "^3.2.1"
   },
   "keywords": ["gatsby", "stripe"],
   "license": "MIT",

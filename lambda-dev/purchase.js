@@ -20,6 +20,7 @@ exports.handler = function(event, context, callback) {
 
   //-- Parse the body contents into an object.
   const data = JSON.parse(event.body)
+  console.log(data)
 
   //-- Make sure we have all required data. Otherwise, escape.
   if (!data.token || !data.amount || !data.idempotency_key) {
@@ -30,7 +31,6 @@ exports.handler = function(event, context, callback) {
       headers,
       body: JSON.stringify({ status: 'missing-information' }),
     })
-
     return
   }
 
