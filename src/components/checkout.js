@@ -28,8 +28,8 @@ const Checkout = class extends React.Component {
       amount: amount,
       description: 'asdf asdf asdf',
       token: token => {
-        // fetch(`https://gatsby-stripe.netlify.com/.netlify/functions/purchase`, {
-        fetch(`http://localhost:9000/purchase`, {
+        fetch(`https://gatsby-stripe.netlify.com/.netlify/functions/purchase`, {
+          // fetch(`http://localhost:9000/purchase`, {
           method: 'POST',
           body: JSON.stringify({
             token,
