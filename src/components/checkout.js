@@ -2,34 +2,45 @@ import React from 'react'
 import uuid from 'uuid/v4'
 
 let stripeHandler
+// hardcodded amount to charge users
 const amount = 2500
 
 const Checkout = class extends React.Component {
-  constructor(props) {
-    super(props)
+  state = {
+    disabled: false,
+    buttonText: 'Buy Now',
+    paymentMessage: '',
+  }
 
-    this.openStripeCheckout = this.openStripeCheckout.bind(this)
+  resetButton() {
+    this.setState({ disabled: false, buttonText: 'Buy Now' })
   }
 
   componentDidMount() {
-    console.log('mounting component')
     stripeHandler = StripeCheckout.configure({
       key: 'pk_test_kuhbxb0MMZsp6fj6aTNDnxUu',
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
       locale: 'auto',
+      closed: () => {
+        this.resetButton()
+      },
     })
   }
 
   openStripeCheckout(event) {
     event.preventDefault()
-
+    this.setState({ disabled: true, buttonText: 'Waiting...' })
     stripeHandler.open({
-      name: 'Demo E-Commerce',
+      name: 'Demo Product',
       amount: amount,
-      description: 'asdf asdf asdf',
+      description: 'A product well worth your time',
       token: token => {
+        /* 
+        You can replace the url below with this one to run 
+        the netlify-lambda function in a dev environment:
+        fetch(`http://localhost:9000/purchase`, {
+        */
         fetch(`https://gatsby-stripe.netlify.com/.netlify/functions/purchase`, {
-          // fetch(`http://localhost:9000/purchase`, {
           method: 'POST',
           body: JSON.stringify({
             token,
@@ -40,8 +51,16 @@ const Checkout = class extends React.Component {
             'Content-Type': 'application/json',
           }),
         })
-          .then(res => res.json())
-          .catch(error => console.error('Error:', error))
+          .then(res => {
+            console.log('transaction sent')
+            this.resetButton()
+            this.setState({ paymentMessage: 'Payment Successful!' })
+            return res.json()
+          })
+          .catch(error => {
+            console.error('Error:', error)
+            this.setState({ paymentMessage: 'Payment Failed' })
+          })
       },
     })
   }
@@ -74,9 +93,11 @@ const Checkout = class extends React.Component {
             outline: 'none',
           }}
           onClick={event => this.openStripeCheckout(event)}
+          disabled={this.state.disabled}
         >
-          Buy Now
+          {this.state.buttonText}
         </button>
+        {this.state.paymentMessage}
       </div>
     )
   }

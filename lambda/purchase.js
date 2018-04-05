@@ -1386,6 +1386,8 @@ _Error.StripeIdempotencyError = StripeError.extend({type: 'StripeIdempotencyErro
 "use strict";
 
 
+// This file is for developing the actual stripe charge,
+// which is transpiled into the /lambda folder
 __webpack_require__(13).config();
 
 const stripe = __webpack_require__(15)(process.env.STRIPE_SECRET_KEY);
@@ -1397,7 +1399,7 @@ const headers = {
 };
 
 exports.handler = function (event, context, callback) {
-  //-- We only care to do anything if this is our POST request.
+  // don't do anything unless you are posting to the endpoint
   if (event.httpMethod !== 'POST' || !event.body) {
     callback(null, {
       statusCode,
@@ -1406,11 +1408,11 @@ exports.handler = function (event, context, callback) {
     });
   }
 
-  //-- Parse the body contents into an object.
+  // parse the body contents into the data variable
   const data = JSON.parse(event.body);
   console.log(data);
 
-  //-- Make sure we have all required data. Otherwise, escape.
+  // make sure we have all required data
   if (!data.token || !data.amount || !data.idempotency_key) {
     console.error('Required information is missing.');
 
@@ -1427,7 +1429,7 @@ exports.handler = function (event, context, callback) {
     amount: data.amount,
     source: data.token.id,
     receipt_email: data.token.email,
-    description: `charge for a widget`
+    description: `a sample test charge`
   }, {
     idempotency_key: data.idempotency_key
   }, (err, charge) => {
