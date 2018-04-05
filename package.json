@@ -23,7 +23,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "netlify-lambda": "^1.0.0-babel-7-beta",
     "prettier": "^1.11.1"
   }
 }

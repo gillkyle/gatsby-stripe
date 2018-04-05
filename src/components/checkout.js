@@ -28,7 +28,7 @@ const Checkout = class extends React.Component {
       amount: amount,
       token: token => {
         // fetch(`https://gatsby-stripe.netlify.com/.netlify/functions/purchase`, {
-        fetch(`http://localhost:8000/purchase`, {
+        fetch(`http://localhost:9000/purchase`, {
           method: 'POST',
           body: JSON.stringify({
             token,
@@ -41,7 +41,6 @@ const Checkout = class extends React.Component {
         })
           .then(res => res.json())
           .catch(error => console.error('Error:', error))
-          .then(response => console.log(response))
       },
     })
   }
