@@ -26,6 +26,7 @@ const Checkout = class extends React.Component {
     stripeHandler.open({
       name: 'Demo E-Commerce',
       amount: amount,
+      description: 'asdf asdf asdf',
       token: token => {
         // fetch(`https://gatsby-stripe.netlify.com/.netlify/functions/purchase`, {
         fetch(`http://localhost:9000/purchase`, {

@@ -10,19 +10,24 @@
     "gatsby-plugin-react-helmet": "^2.0.8",
     "gatsby-plugin-stripe-checkout": "^1.0.3",
     "react-helmet": "^5.2.0",
+    "stripe": "^5.8.0",
     "uuid": "^3.2.1"
   },
-  "keywords": ["gatsby", "stripe"],
+  "keywords": [
+    "gatsby",
+    "stripe"
+  ],
   "license": "MIT",
   "scripts": {
     "copy": "cp lambda-dev/purchase.js lambda/purchase.js",
-    "lambda-serve": "yarn run copy && netlify-lambda serve lambda",
+    "lambda-serve": "yarn run copy && netlify-lambda serve lambda-dev",
     "build": "gatsby build && yarn run copy && netlify-lambda build lambda",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "netlify-lambda": "^0.3.1",
     "prettier": "^1.11.1"
   }
 }
