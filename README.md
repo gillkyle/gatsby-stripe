@@ -1,5 +1,5 @@
 # Gatsby Stripe Checkout Demo
-This project was bootstrapped using the `gatsby-starter-default` starter, and is built using Gatsby, Stripe Checkout, and Netlify Functions. This demo was adapted from a tutorial [here](https://github.com/alexmacarthur/netlify-lambda-function-example/blob/master/src/scripts.js) by alexmacarthur.
+This project was bootstrapped using the `gatsby-starter-default` starter, and is built using Gatsby, Stripe Checkout, and Netlify Functions. This demo was adapted from a tutorial [here](https://github.com/alexmacarthur/netlify-lambda-function-example/) by alexmacarthur.
 
 The majority of the example code of this project is in the `src/components/checkout.js` and `lambda-dev/purchase.js` files
 
