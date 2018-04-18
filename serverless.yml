@@ -1,0 +1,31 @@
+# Welcome to serverless. Read the docs
+# https://serverless.com/framework/docs/
+
+# Serverless.yml is the configuration the CLI
+# uses to deploy your code to your provider of choice
+
+# The `service` block is the name of the service
+service: gatsby-serverless-stripe
+
+# Configuration variables
+custom:
+  secrets: ${file(secrets.json)}
+
+# The `provider` block defines where your service will be deployed
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  environment:
+    STRIPE_SECRET_KEY: ${self:custom.secrets.stripeSecretKey} # Stripe secret API key
+
+# The `functions` block defines what code to deploy
+functions:
+  checkout:
+    handler: aws-lambda/checkout.handler
+    # The `events` block defines how to trigger the handler.createCharge code
+    events:
+      - http:
+          path: checkout
+          method: post
+          cors: true
