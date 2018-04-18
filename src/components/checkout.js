@@ -40,17 +40,20 @@ const Checkout = class extends React.Component {
         the netlify-lambda function in a dev environment:
         fetch(`http://localhost:9000/purchase`, {
         */
-        fetch(`https://gatsby-stripe.netlify.com/.netlify/functions/purchase`, {
-          method: 'POST',
-          body: JSON.stringify({
-            token,
-            amount,
-            idempotency_key: uuid(),
-          }),
-          headers: new Headers({
-            'Content-Type': 'application/json',
-          }),
-        })
+        fetch(
+          `https://4m5jfeec48.execute-api.us-east-1.amazonaws.com/dev/checkout`,
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              token,
+              amount,
+              idempotency_key: uuid(),
+            }),
+            headers: new Headers({
+              'Content-Type': 'application/json',
+            }),
+          }
+        )
           .then(res => {
             console.log('transaction sent')
             this.resetButton()

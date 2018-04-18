@@ -5,6 +5,7 @@ yarn-error.log
 
 # Build directory
 /public
+.serverless
 
 # Env files
 .env
