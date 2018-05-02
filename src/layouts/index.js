@@ -4,8 +4,18 @@ import Helmet from 'react-helmet'
 
 import './index.css'
 
+const layoutStyles = {
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh',
+  background:
+    'linear-gradient(to bottom right, rgb(251, 244, 251), rgb(202, 161, 225))',
+}
+
 const TemplateWrapper = ({ children }) => (
-  <div>
+  <div style={layoutStyles}>
     <Helmet
       title="Gatsby Stripe"
       meta={[
@@ -13,16 +23,7 @@ const TemplateWrapper = ({ children }) => (
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-      }}
-    >
-      {children()}
-    </div>
+    <div>{children()}</div>
   </div>
 )
 
